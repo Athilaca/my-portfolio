@@ -1,27 +1,15 @@
 
 import { useState, useEffect } from "react";
+import skills from "../skills/skills"; 
 
-
-
+import { motion } from "framer-motion";
 
 export default function Home() {
-  const skills = [
-    {
-      skill: "AdobeXD",
-      icon: "https://img.icons8.com/color/48/000000/adobe-xd.png",
-      level: 80,
-    },
-    {
-      skill: "Python",
-      icon: "https://img.icons8.com/color/48/000000/python.png",
-      level: 90,
-    },
-    {
-      skill: "JavaScript",
-      icon: "https://img.icons8.com/color/48/000000/javascript--v1.png",
-      level: 75,
-    },
-  ];
+
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState('');
+  const [visibleSkills, setVisibleSkills] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -29,8 +17,18 @@ export default function Home() {
     message: ''
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState('');
+  const [isVisible, setIsVisible] = useState(false);
+
+ 
+  const containerVariants = {
+    hidden: { opacity: 0, x: -50 }, // Start off-screen
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }, // Slide in
+  };
+
+  const containerRightVariants = {
+    hidden: { opacity: 0, x: 50 }, // Start off-screen
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }, // Slide in
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -67,10 +65,6 @@ export default function Home() {
       setIsSubmitting(false);
     }
   };
-  
-
-
-  const [visibleSkills, setVisibleSkills] = useState([]);
 
 useEffect(() => {
   const handleScroll = () => {
@@ -89,6 +83,17 @@ useEffect(() => {
   window.addEventListener("scroll", handleScroll);
   handleScroll(); // Trigger on page load
   return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => setIsVisible(entry.isIntersecting),
+    { threshold: 0.3 } // Adjust threshold as needed
+  );
+  const section = document.getElementById("experience");
+  if (section) observer.observe(section);
+
+  return () => observer.disconnect();
 }, []);
 
   return (
@@ -255,25 +260,24 @@ useEffect(() => {
             <h2 className="heading">
               <i className="fas fa-laptop-code"></i> Skills & <span>Abilities</span>
             </h2>
-            <div className="container">
+            <div className="skills-grid">
               {skills.map((skillData, index) => (
                 <div key={index} id={`skill-${index}`} className="skill">
-                  <img
-                    src={skillData.icon}
-                    alt={skillData.skill}
-                    className="icon"
-                  />
-                  <div className="progress-bar">
-                    <div
-                      className="progress"
-                      style={{
-                        width: visibleSkills.includes(skillData.skill)
-                          ? `${skillData.level}%`
-                          : "0%",
-                      }}
-                    >
-                      {visibleSkills.includes(skillData.skill) &&
-                        `${skillData.level}%`}
+                  <img src={skillData.icon} alt={skillData.skill} className="icon" />
+                  <div className="progress-container">
+                    <div className="skill-name">{skillData.skill}</div>
+                    <div className="progress-bar">
+                      <div
+                        className="progress"
+                        style={{
+                          width: visibleSkills.includes(skillData.skill)
+                            ? `${skillData.level}%`
+                            : "0%",
+                        }}
+                      >
+                        {visibleSkills.includes(skillData.skill) &&
+                          `${skillData.level}%`}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -398,40 +402,51 @@ useEffect(() => {
             </div>
           </section>
 
-          <section class="experience" id="experience">
-
-            <h2 class="heading"><i class="fas fa-briefcase"></i> Experience </h2>
-
-            <div class="timeline">
-
-              <div class="container right">
-                <div class="content">
-                  <div class="tag">
-                    <h2>Self Employed</h2>
-                  </div>
-                  <div class="desc">
-                      <h3>Python Full Stack Developer</h3>
-                      <p>July 2024 - present</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="container left">
-                <div class="content">
-                  <div class="tag">
-                    <h2>Brototype</h2>
-                  </div>
-                  <div class="desc">
-                      <h3>Web Developer | Internship</h3>
-                      <p>Brototype is a internship program to learn coding.
-          The main attractivness of this internship is self-learning.
-          They provide proper guidence to learn and make ourselves to become a software Developer (August 2023 - June 2024)</p>
-                  </div>
-                </div>
-              </div>
+          <section className="experience" id="experience">
+      <h2 className="heading">
+        <i className="fas fa-briefcase"></i> Experience
+      </h2>
+      <div className="timeline">
+        <motion.div
+          className="container right"
+          initial="hidden"
+          animate={isVisible ? "visible" : "hidden"}
+          variants={containerRightVariants}
+        >
+          <div className="content">
+            <div className="tag">
+              <h2>Self Employed</h2>
             </div>
+            <div className="desc">
+              <h3>Python Full Stack Developer</h3>
+              <p>July 2024 - present</p>
+            </div>
+          </div>
+        </motion.div>
 
-          </section>
+        <motion.div
+          className="container left"
+          initial="hidden"
+          animate={isVisible ? "visible" : "hidden"}
+          variants={containerVariants}
+        >
+          <div className="content">
+            <div className="tag">
+              <h2>Brototype</h2>
+            </div>
+            <div className="desc">
+              <h3>Web Developer | Internship</h3>
+              <p>
+                Brototype is a internship program to learn coding. The main
+                attractivness of this internship is self-learning. They provide
+                proper guidence to learn and make ourselves to become a software
+                Developer (August 2023 - June 2024)
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
 
 <section className="contact" id="contact">
   <h2 className="heading">
