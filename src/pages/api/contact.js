@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { name, email, phone, message } = req.body;
+    
 
     // Create a transporter object using your email service
     const transporter = nodemailer.createTransport({
@@ -14,6 +15,7 @@ export default async function handler(req, res) {
         pass: process.env.EMAIL_PASSWORD, // Your email password (use environment variables for security)
       },
     });
+  
 
     // Set up email data
     const mailOptions = {

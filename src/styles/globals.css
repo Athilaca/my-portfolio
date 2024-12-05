@@ -212,11 +212,12 @@ header .navbar ul li a:hover {
 }
 
 .home .image img{
-  width: 30rem;
+  width: auto;
   height: auto;
   mix-blend-mode: luminosity;
   transition: 0.3s;
   cursor: pointer;
+  border-radius: 50%; 
 }
 .home .image img:hover {
   mix-blend-mode: normal;
@@ -762,6 +763,33 @@ header .navbar ul li a:hover {
 }
 /* work section ends */
 
+/* Initial state for project cards */
+.work .box {
+  opacity: 0; /* Hidden initially */
+  transform: translateY(30px) scale(0.95); /* Start slightly lower and smaller */
+  transition: opacity 0.6s ease, transform 0.6s ease; /* Smooth transitions */
+}
+
+/* Animated state when the box becomes visible */
+.work .box.fade-in {
+  opacity: 1; /* Fully visible */
+  transform: translateY(0) scale(1); /* Move to its original position and size */
+  transition-delay: var(--delay, 0s); /* Apply staggered delays */
+}
+
+/* Keyframes for added smoothness */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
 /* experience section starts */
 .experience .timeline {
   position: relative;
@@ -1025,6 +1053,18 @@ header .navbar ul li a:hover {
   background: #ccc;
   cursor: not-allowed;
 }
+.error {
+  color: red;
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+.status {
+  margin-top: 10px;
+  font-size: 1.5rem;
+  color: black;
+}
+
 
 
 

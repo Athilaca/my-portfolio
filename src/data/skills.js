@@ -22,7 +22,7 @@ const skills = [
     {
       skill: "Django",
       icon: "https://img.icons8.com/color/48/000000/django.png",
-      level: 85,
+      level: 90,
     },
     {
       skill: "AWS",
@@ -37,7 +37,7 @@ const skills = [
     {
       skill: "Tailwind CSS",
       icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/48px-Tailwind_CSS_Logo.png",
-      level: 75,
+      level: 85,
     },
     {
       skill: "Bootstrap",
@@ -78,6 +78,21 @@ const skills = [
       skill: "jQuery",
       icon: "https://img.icons8.com/ios-filled/48/000000/jquery.png",
       level: 75,
+    },
+    {
+      skill: "Next.js",
+      icon: "https://iconape.com/wp-content/files/gm/82643/svg/next-js.svg", 
+      level: 80, 
+    },
+    {
+      skill: "Figma",
+      icon: "https://img.icons8.com/ios-filled/48/000000/figma.png",
+      level: 85,
+    },
+    {
+      skill: "Postman",
+      icon: "https://www.svgrepo.com/show/354202/postman-icon.svg",
+      level: 90, 
     },
   ];
   export default skills;
