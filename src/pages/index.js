@@ -142,7 +142,7 @@ export default function Home({ duration = 2 }) {
     }));
   };
 
-  const apiURL = `${process.env.NEXT_PUBLIC_API_URL}/api/contact`;
+  const apiURL = `${process.env.NEXT_PUBLIC_API_URL}api/contact`;
 
 
   const handleSubmit = async (e) => {
