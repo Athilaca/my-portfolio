@@ -142,6 +142,9 @@ export default function Home({ duration = 2 }) {
     }));
   };
 
+  const apiURL = `${process.env.NEXT_PUBLIC_API_URL}/api/contact`;
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -153,7 +156,7 @@ export default function Home({ duration = 2 }) {
 
   
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(apiURL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
