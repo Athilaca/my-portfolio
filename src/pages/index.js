@@ -156,7 +156,7 @@ export default function Home({ duration = 2 }) {
 
   
     try {
-      const response = await fetch(`${API_URL}/api/contact`, {
+      const response = await fetch(`${API_URL}api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
