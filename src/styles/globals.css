@@ -217,7 +217,7 @@ header .navbar ul li a:hover {
   mix-blend-mode: luminosity;
   transition: 0.3s;
   cursor: pointer;
-  border-radius: 60%; 
+  border-radius: 50%; 
 }
 .home .image img:hover {
   mix-blend-mode: normal;

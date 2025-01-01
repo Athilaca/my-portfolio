@@ -215,14 +215,6 @@ export default function Home({ duration = 2 }) {
           {/* Hero Section */}
           <section className="home" id="home">
             <div id="particles-js"></div>
-            <div className="image">
-              <img
-                draggable="false"
-                className="tilt"
-                src="profile.png"
-                alt="Hero"
-              />
-            </div>
             <div className="content">
               
               <h2>
@@ -299,6 +291,15 @@ export default function Home({ duration = 2 }) {
                 </ul>
               </div>
             </div>
+            <div className="image">
+              <img
+                draggable="false"
+                className="tilt"
+                src="profile.jpg"
+                alt="Hero"
+              />
+            </div>
+            
             
           </section>
 
