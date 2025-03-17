@@ -225,7 +225,7 @@ export default function Home({ duration = 2 }) {
                 I am into 
                 <AnimatePresence mode="wait">
                   <motion.span
-                    key={currentWordIndex} // Use the index as the key to trigger animations
+                    key={words[currentWordIndex]} // Use the index as the key to trigger animations
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
